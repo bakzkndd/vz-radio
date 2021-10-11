@@ -10,6 +10,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
 	async render() {
 		const { getSetting, toggleSetting, updateSetting } = this.props;
 		const station = await getStationName(getSetting('vz-radio-station', 'Dash Pop X'))
+		console.log(station)
 		return (
 			<>
 				<TextInput
@@ -21,7 +22,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
 					Enter a radio station of your choice here
 				</TextInput>
 
-				Currently using <b>{station}</b> as your radio station!
+				Currently using <b>station</b> as your radio station!
 			</>
 		);
 	}
