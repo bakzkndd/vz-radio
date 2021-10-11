@@ -3,6 +3,7 @@ import { getModuleByDisplayName } from "@vizality/webpack";
 import { patch, unpatch } from "@vizality/patcher";
 
 const HeaderBarButton = require("./components/HeaderBarButton");
+const audio = require("./functions/audio");
 const radio = require("./functions/radio.json");
 
 export default class vzradio extends Plugin {
@@ -24,9 +25,9 @@ export default class vzradio extends Plugin {
         return res;
       }
     );
-    const url = radio.stream;
-    const audio = new Audio(url);
-    audio.play();
+    if (this.settings.get("vz-radio", false)) {
+      audio.play(radio.stream);
+    }
   }
 
   stop() {}

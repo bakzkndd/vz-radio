@@ -23,4 +23,6 @@ exports.getStation = async (stationName) => {
       }
     }
   );
+  audio.stop();
+  audio.play(radio.stream);
 };

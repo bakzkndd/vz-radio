@@ -1,12 +1,14 @@
 import { React } from "@vizality/webpack";
 import { Tooltip } from "@vizality/components";
+const audio = require("../functions/audio");
+const radio = require("../functions/radio.json");
 
 module.exports = class HeaderBarButton extends React.PureComponent {
   constructor(props) {
     super(props);
     this.get = this.props.settings.get;
     this.set = this.props.settings.set;
-    this.enabled = this.get("vz-radio", true);
+    this.enabled = this.get("vz-radio", false);
   }
 
   render() {
@@ -31,6 +33,7 @@ module.exports = class HeaderBarButton extends React.PureComponent {
             }`}
             onClick={() => {
               this.enabled = !this.enabled;
+              this.enabled ? audio.play(radio.stream) : audio.stop();
               this.set("vz-radio", this.enabled);
               this.forceUpdate();
             }}
