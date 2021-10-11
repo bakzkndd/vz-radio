@@ -5,11 +5,11 @@ const radiobrowser = require("../functions/radio-browser.js");
 module.exports = class vzradiosettings extends React.PureComponent {
   constructor(props) {
     super(props);
-  }
 
-  station = await radiobrowser.getStationName(
-    await getSetting("vz-radio-station", "Dash Pop X")
-  );
+    this.station = radiobrowser.getStationName(
+      getSetting("vz-radio-station", "Dash Pop X")
+    );
+  }
 
   render() {
     const { getSetting, toggleSetting, updateSetting } = this.props;
