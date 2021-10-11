@@ -10,7 +10,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
   async render() {
     const { getSetting, toggleSetting, updateSetting } = this.props;
     const station = await radiobrowser.getStationName(
-      getSetting("vz-radio-station", "Dash Pop X")
+      await getSetting("vz-radio-station", "Dash Pop X")
     );
     console.log(station);
     return (
