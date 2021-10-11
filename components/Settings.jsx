@@ -8,24 +8,24 @@ module.exports = class vzradiosettings extends React.PureComponent {
   }
 
   render() {
+    const radio = require("radio.json");
     const { getSetting, toggleSetting, updateSetting } = this.props;
 
-    radiobrowser
-      .getStationName(getSetting("vz-radio-station", "Dash Pop X"))
-      .then((station) => {
-        return (
-          <>
-            <TextInput
-              note="Here you can enter any known radio station."
-              defaultValue={getSetting("vz-radio-station", "Dash Pop X")}
-              required={false}
-              onChange={(val) => updateSetting("vz-radio-station", val)}
-            >
-              Enter a radio station of your choice here
-            </TextInput>
-            Currently using <b>{station}</b> as your radio station!
-          </>
-        );
-      });
+    return (
+      <>
+        <TextInput
+          note="Here you can enter any known radio station."
+          defaultValue={getSetting("vz-radio-station", "Dash Pop X")}
+          required={false}
+          onChange={(val) => {
+            updateSetting("vz-radio-station", val);
+            radiobrowser.getStationName(val);
+          }}
+        >
+          Enter a radio station of your choice here
+        </TextInput>
+        Currently using <b>{radio.station}</b> as your radio station!
+      </>
+    );
   }
 };
