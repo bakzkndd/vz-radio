@@ -1,0 +1,10 @@
+{
+  "name": "vz-radio",
+  "description": "Listen to a radio station within your discord client!",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "bakzkndd#2819",
+    "id": "343103632453009408"
+  }
+}
