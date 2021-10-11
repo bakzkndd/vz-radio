@@ -24,11 +24,8 @@ module.exports = class vzradiosettings extends React.PureComponent {
               radiobrowser.getStation(val);
               cooldown = true;
               setTimeout(function () {
-                radiobrowser.getStation(val);
-                setTimeout(function () {
-                  cooldown = false;
-                }, 1000);
-              }, 1000);
+                cooldown = false;
+              }, 500);
             }
           }}
         >
