@@ -17,7 +17,7 @@ exports.getStation = async (stationName) => {
         obj.name = radio.body[0].name; //add some data
         obj.stream = radio.body[0].url_resolved; //add some data
         let json = JSON.stringify(obj); //convert it back to json
-        fs.writeFile(`${__dirname}/radio.json`, json, "utf8", callback); // write it back
+        fs.writeFile(`${__dirname}/radio.json`, json, "utf8"); // write it back
       }
     }
   );
