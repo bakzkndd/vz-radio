@@ -2,7 +2,7 @@ import { get } from "@vizality/http";
 import fs from "fs";
 
 exports.getStation = async (stationName) => {
-  const data = await get(
+  const radio = await get(
     `http://91.132.145.114/json/stations/byname/${stationName}`
   );
 
@@ -14,8 +14,8 @@ exports.getStation = async (stationName) => {
         console.log(err);
       } else {
         let obj = JSON.parse(data); //now it an object
-        obj.name = data.body[0].name; //add some data
-        obj.stream = data.body[0].url_resolved; //add some data
+        obj.name = radio.body[0].name; //add some data
+        obj.stream = radio.body[0].url_resolved; //add some data
         let json = JSON.stringify(obj); //convert it back to json
         fs.writeFile(`${__dirname}/radio.json`, json, "utf8", callback); // write it back
       }
