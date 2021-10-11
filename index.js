@@ -17,7 +17,7 @@ export default class vzradio extends Plugin {
       HeaderBarContainer.prototype,
       "render",
       (args, res) => {
-        res.props.toolbar.props.children.unshift(
+        res.props.toolbar.props.children.push(
           <HeaderBarButton
             settings={this.settings}
             bartype={HeaderBarContainer.Icon}
