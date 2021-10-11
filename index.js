@@ -5,7 +5,7 @@ import { patch, unpatch } from '@vizality/patcher'
 const HeaderBarButton = require('./components/HeaderBarButton')
 
 export default class vzradio extends Plugin {
-  start () {
+  async start () {
     const HeaderBarContainer = await getModuleByDisplayName('HeaderBarContainer')
     patch('radio-header-bar', HeaderBarContainer.prototype, 'render', (args, res)=> {
       if (this.settings.get('location') === 'header-bar-container')
