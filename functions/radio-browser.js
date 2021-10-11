@@ -4,8 +4,8 @@ exports.getStationName = async (stationName) => {
   const data = await get(
     `http://91.132.145.114/json/stations/byname/${stationName}`
   );
-  console.log(data);
-  return data.name;
+  console.log(data.body[0].name);
+  return data.body[0].name;
 };
 
 exports.getStationStream = async (stationName) => {
