@@ -1,6 +1,7 @@
 import { Plugin } from "@vizality/entities";
 import { getModuleByDisplayName } from "@vizality/webpack";
 import { patch, unpatch } from "@vizality/patcher";
+import React from "react";
 
 const HeaderBarButton = require("./components/HeaderBarButton");
 const audio = require("./functions/audio");
