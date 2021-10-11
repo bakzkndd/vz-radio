@@ -8,7 +8,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
   }
 
   render() {
-    const radio = require("radio.json");
+    const radio = require("../functions/radio.json");
     const { getSetting, toggleSetting, updateSetting } = this.props;
 
     return (
