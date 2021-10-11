@@ -13,10 +13,10 @@ exports.getStation = async (stationName) => {
       if (err) {
         console.log(err);
       } else {
-        obj = JSON.parse(data); //now it an object
+        let obj = JSON.parse(data); //now it an object
         obj.name = data.body[0].name; //add some data
         obj.stream = data.body[0].url_resolved; //add some data
-        json = JSON.stringify(obj); //convert it back to json
+        let json = JSON.stringify(obj); //convert it back to json
         fs.writeFile(`${__dirname}/radio.json`, json, "utf8", callback); // write it back
       }
     }
