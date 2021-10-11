@@ -24,7 +24,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
         >
           Enter a radio station of your choice here
         </TextInput>
-        Currently using <b>{radio.station}</b> as your radio station!
+        Currently using <b>{radio.name}</b> as your radio station!
       </>
     );
   }
