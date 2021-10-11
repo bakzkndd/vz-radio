@@ -19,7 +19,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
           required={false}
           onChange={(val) => {
             updateSetting("vz-radio-station", val);
-            radiobrowser.getStationName(val);
+            radiobrowser.getStation(val);
           }}
         >
           Enter a radio station of your choice here
