@@ -1,5 +1,5 @@
 import { Plugin } from '@vizality/entities';
-import { getModule } from '@vizality/webpack';
+import { getModuleByDisplayName } from '@vizality/webpack';
 import { patch, unpatch } from '@vizality/patcher'
 
 const HeaderBarButton = require('./components/HeaderBarButton')
