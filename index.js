@@ -31,5 +31,8 @@ export default class vzradio extends Plugin {
     }
   }
 
-  stop() {}
+  stop() {
+    audio.stop();
+    unpatch("radio-header-bar");
+  }
 }
