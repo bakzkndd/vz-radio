@@ -3,13 +3,13 @@ const { TextInput } = require("@vizality/components/settings");
 const radiobrowser = require("../functions/radio-browser.js");
 
 module.exports = class vzradiosettings extends React.PureComponent {
-  constructor(props) {
+  async constructor(props) {
     super(props);
     this.station = await radiobrowser.getStationName(
       await getSetting("vz-radio-station", "Dash Pop X")
     );
   }
-  async render() {
+  render() {
     const { getSetting, toggleSetting, updateSetting } = this.props;
 
     return (
