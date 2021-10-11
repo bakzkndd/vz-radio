@@ -1,6 +1,7 @@
 const { React } = require("@vizality/webpack");
 const { TextInput } = require("@vizality/components/settings");
 const radiobrowser = require("../functions/radio-browser.js");
+let cooldown = false;
 
 module.exports = class vzradiosettings extends React.PureComponent {
   constructor(props) {
@@ -19,7 +20,16 @@ module.exports = class vzradiosettings extends React.PureComponent {
           required={false}
           onChange={(val) => {
             updateSetting("vz-radio-station", val);
-            radiobrowser.getStation(val);
+            if (!cooldown) {
+              radiobrowser.getStation(val);
+              cooldown = true;
+              setTimeout(function () {
+                radiobrowser.getStation(val);
+                setTimeout(function () {
+                  cooldown = false;
+                }, 1000);
+              }, 1000);
+            }
           }}
         >
           Enter a radio station of your choice here
