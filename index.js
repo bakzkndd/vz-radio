@@ -26,7 +26,7 @@ export default class vzradio extends Plugin {
     );
     const url = radio.stream;
     const audio = new Audio(url);
-    audio.play;
+    audio.play();
   }
 
   stop() {}
