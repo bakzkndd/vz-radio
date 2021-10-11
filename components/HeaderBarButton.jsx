@@ -20,7 +20,7 @@ module.exports = class HeaderBarButton extends React.PureComponent {
         >
           <this.props.bartype
             icon={() => (
-              <svg class="icon-22AiRD" viewBox="0 0 500 400">
+              <svg class="icon-22AiRD" viewBox="0 0 400 400">
                 <path
                   fill="currentColor"
                   transform="translate(0,-40)"
