@@ -5,13 +5,13 @@ const radiobrowser = require("../functions/radio-browser.js");
 module.exports = class vzradiosettings extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { category0Opened: false, category1Opened: false };
-  }
-  render() {
-    const { getSetting, toggleSetting, updateSetting } = this.props;
-    const station = radiobrowser.getStationName(
-      getSetting("vz-radio-station", "Dash Pop X")
+    this.station = await radiobrowser.getStationName(
+      await getSetting("vz-radio-station", "Dash Pop X")
     );
+  }
+  async render() {
+    const { getSetting, toggleSetting, updateSetting } = this.props;
+
     return (
       <>
         <TextInput
@@ -22,7 +22,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
         >
           Enter a radio station of your choice here
         </TextInput>
-        Currently using <b>{station}</b> as your radio station!
+        Currently using <b>{this.station}</b> as your radio station!
       </>
     );
   }
