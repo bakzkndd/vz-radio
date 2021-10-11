@@ -6,5 +6,7 @@ exports.play = (stream) => {
 };
 
 exports.stop = () => {
-  audio.stop();
+  audio.pause();
+  audio.currentTime = 0;
+  audio.src = "";
 };
