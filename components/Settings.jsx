@@ -1,5 +1,5 @@
 const { React } = require("@vizality/webpack");
-const { TextInput } = require("@vizality/components/settings");
+const { TextInput, SliderInput } = require("@vizality/components/settings");
 const radiobrowser = require("../functions/radio-browser.js");
 const audio = require('../functions/audio')
 let cooldown = false;
