@@ -22,7 +22,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
           onChange={(val) => {
             updateSetting("vz-radio-station", val);
             if (!cooldown) {
-              radiobrowser.getStation(val, getSetting('volume-slider', 100));
+              radiobrowser.getStation(val, getSetting('volume-slider', 100), getSetting("vz-radio", false));
               cooldown = true;
               setTimeout(function () {
                 cooldown = false;
@@ -41,8 +41,10 @@ module.exports = class vzradiosettings extends React.PureComponent {
         defaultValue={getSetting('volume-slider', 100)}
         onChange={v => {
           updateSetting('volume-slider', v)
-          audio.stop()
-          audio.play(getSetting("vz-radio-station", "Dash Pop X"), v)
+          if(getSetting("vz-radio", false)) {
+            audio.stop()
+            audio.play(getSetting("vz-radio-station", "Dash Pop X"), v)
+          }
         }}
         >
           Change the volume here
