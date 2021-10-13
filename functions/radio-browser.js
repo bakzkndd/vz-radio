@@ -1,7 +1,7 @@
 import { get } from "@vizality/http";
 import fs from "fs";
 
-exports.getStation = async (stationName) => {
+exports.getStation = async (stationName, volume) => {
   const radio = await get(
     `http://91.132.145.114/json/stations/byname/${stationName}`
   );
@@ -24,5 +24,5 @@ exports.getStation = async (stationName) => {
     }
   );
   audio.stop();
-  audio.play(radio.stream);
+  audio.play(radio.stream, volume);
 };

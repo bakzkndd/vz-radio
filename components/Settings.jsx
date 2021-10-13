@@ -1,6 +1,7 @@
 const { React } = require("@vizality/webpack");
 const { TextInput } = require("@vizality/components/settings");
 const radiobrowser = require("../functions/radio-browser.js");
+const audio = require('../functions/audio')
 let cooldown = false;
 
 module.exports = class vzradiosettings extends React.PureComponent {
@@ -21,7 +22,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
           onChange={(val) => {
             updateSetting("vz-radio-station", val);
             if (!cooldown) {
-              radiobrowser.getStation(val);
+              radiobrowser.getStation(val, getSetting('volume-slider', 100));
               cooldown = true;
               setTimeout(function () {
                 cooldown = false;
@@ -32,6 +33,20 @@ module.exports = class vzradiosettings extends React.PureComponent {
           Enter a radio station of your choice here
         </TextInput>
         Currently using <b>{radio.name}</b> as your radio station!
+
+        <SliderInput
+        disabled={false}
+        note={'Volume slider.'}
+        initialValue={100}
+        defaultValue={getSetting('volume-slider', 100)}
+        onChange={v => {
+          updateSetting('volume-slider', v)
+          audio.stop()
+          audio.play(getSetting("vz-radio-station", "Dash Pop X"), v)
+        }}
+        >
+          Change the volume here
+      </SliderInput>
       </>
     );
   }

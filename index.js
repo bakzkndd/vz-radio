@@ -27,7 +27,7 @@ export default class vzradio extends Plugin {
       }
     );
     if (this.settings.get("vz-radio", false)) {
-      audio.play(radio.stream);
+      audio.play(radio.stream, this.settings.get('volume-slider', 100));
     }
   }
 
