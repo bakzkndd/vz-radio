@@ -38,7 +38,9 @@ module.exports = class HeaderBarButton extends React.PureComponent {
             }`}
             onClick={() => {
               this.enabled = !this.enabled;
-              this.enabled ? audio.play(radio.stream) : audio.stop();
+              this.enabled
+                ? audio.play(radio.stream, this.get("volume-slider", 100))
+                : audio.stop();
               this.set("vz-radio", this.enabled);
               this.forceUpdate();
             }}
