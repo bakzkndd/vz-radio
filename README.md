@@ -1,5 +1,6 @@
 ![banner](https://user-images.githubusercontent.com/50497725/136861816-0ccc555d-866f-4373-bf06-dcac6059fcea.png)
- # vz-radio
+
+# vz-radio
 
 Listen to a radio station within your discord client! Toggle it with ease in any server and change it to your likings in the settings!
 
@@ -13,4 +14,9 @@ Settings:
 ![1](https://user-images.githubusercontent.com/50497725/136861920-71449dc7-ba02-46c5-9031-834c79d5fec5.png)
 
 # How to install:
- Vizality: Open a CMD/Powershell/Terminal/Gitbash window in the Plugin folder and use: `git clone https://github.com/bakzkndd/vz-radio/`
+
+Vizality: Open a CMD/Powershell/Terminal/Gitbash window in the Plugin folder and use: `git clone https://github.com/bakzkndd/vz-radio/`
+
+# Support
+
+Join my discord server: https://discord.gg/dUc3rQX
