@@ -16,6 +16,9 @@ exports.getStation = async (stationName, volume, play) => {
         let obj = JSON.parse(data); //now it an object
         obj.name = radio.body[0].name; //add some data
         obj.stream = radio.body[0].url_resolved; //add some data
+        obj.favicon = radio.body[0].favicon; //add some data
+        obj.description = radio.body[0].tags.split(",")[0]; //add some data
+        obj.homepage = radio.body[0].homepage; //add some data
         let json = JSON.stringify(obj); //convert it back to json
         fs.writeFile(`${__dirname}/radio.json`, json, "utf8", (result) => {
           if (result) console.error(err);
@@ -24,7 +27,7 @@ exports.getStation = async (stationName, volume, play) => {
     }
   );
 
-  if(play) {
+  if (play) {
     audio.stop();
     audio.play(radio.stream, volume);
   }

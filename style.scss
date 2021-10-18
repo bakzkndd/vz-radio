@@ -1,0 +1,75 @@
+@use "@vizality" as vz;
+
+:root {
+  --vz-radio__player-album-border-radius: 50%;
+  --vz-radio-brand-color: #1ecbd7;
+}
+
+.panels-j1Uci_ {
+  list-style: none;
+  -ms-box-orient: vertical;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.container-3baos1 {
+  order: 3;
+}
+
+.spotify-in-discord {
+  display: flex;
+  order: 2;
+}
+
+.vz-radio-player {
+  $base: &;
+  position: relative;
+  display: flex;
+  order: 1;
+  &-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  &-album-cover {
+    @include vz.size(32px);
+    z-index: 4;
+    position: relative;
+    background-size: contain;
+    border-radius: var(--vz-radio__player-album-border-radius);
+    &-wrapper {
+      display: flex;
+    }
+  }
+  &-metadata {
+    height: 52px;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+  &-metadata .radio-name {
+    margin-top: -2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--header-primary);
+    line-height: 18px;
+    font-weight: 600;
+  }
+  [vz-active] {
+    color: var(--vz-radio-brand-color);
+  }
+}

@@ -1,4 +1,7 @@
 {
     "name": "Dash Pop X",
-    "stream": "http://ice55.securenetsystems.net/DASH17"
+    "stream": "http://ice55.securenetsystems.net/DASH17",
+    "description": "pop",
+    "favicon": "https://i.imgur.com/nWLt7eE.jpg",
+    "homepage": "https://dashradio.com/home"
 }

@@ -1,5 +1,9 @@
 import { React } from "@vizality/webpack";
 import { Tooltip } from "@vizality/components";
+import { getModule, contextMenu } from "@vizality/webpack";
+import { waitForElement } from "@vizality/util/dom";
+import { getOwnerInstance } from "@vizality/util/react";
+import ContextMenu from "./ContextMenu";
 const audio = require("../functions/audio");
 const radio = require("../functions/radio.json");
 
@@ -9,6 +13,9 @@ module.exports = class HeaderBarButton extends React.PureComponent {
     this.get = this.props.settings.get;
     this.set = this.props.settings.set;
     this.enabled = this.get("vz-radio", false);
+    radio.stream = this.get("advanced-settings-override", false)
+      ? this.get("radio-stream-override", radio.stream)
+      : radio.stream;
   }
 
   render() {
@@ -36,13 +43,24 @@ module.exports = class HeaderBarButton extends React.PureComponent {
             className={`radio-toggle-button ${
               this.enabled ? "active" : "inactive"
             }`}
-            onClick={() => {
+            onClick={async () => {
               this.enabled = !this.enabled;
               this.enabled
                 ? audio.play(radio.stream, this.get("volume-slider", 100))
                 : audio.stop();
               this.set("vz-radio", this.enabled);
               this.forceUpdate();
+              const { container } = getModule("container", "usernameContainer");
+              const accountContainer = await waitForElement(
+                `section > .${container}`
+              );
+              const instance = getOwnerInstance(accountContainer);
+              instance.forceUpdate();
+            }}
+            onContextMenu={(e) => {
+              contextMenu.openContextMenu(e, () => {
+                return <ContextMenu set={this.set} get={this.get} />;
+              });
             }}
           />
         </Tooltip>
