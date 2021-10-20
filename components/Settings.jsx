@@ -4,6 +4,7 @@ const {
   SliderInput,
   Category,
   SwitchItem,
+  SelectInput,
 } = require("@vizality/components/settings");
 const fs = require("fs");
 const radiobrowser = require("../functions/radio-browser.js");
@@ -35,6 +36,8 @@ module.exports = class vzradiosettings extends React.PureComponent {
     radio.favicon = getSetting("advanced-settings-override", false)
       ? getSetting("radio-image-override", radio.favicon)
       : radio.favicon;
+    radio.results = radio.results || [{ value: 0, label: "Dash Pop X" }]
+    radio.station = radio.station || 0
 
     return (
       <>
@@ -49,7 +52,8 @@ module.exports = class vzradiosettings extends React.PureComponent {
               radiobrowser.getStation(
                 val,
                 getSetting("volume-slider", 100),
-                getSetting("vz-radio", false)
+                getSetting("vz-radio", false),
+                0
               );
               cooldown = true;
               setTimeout(function () {
@@ -60,6 +64,29 @@ module.exports = class vzradiosettings extends React.PureComponent {
         >
           Enter a radio station of your choice here
         </TextInput>
+        <SelectInput
+        note={'Here you can choose a station from search results.'}
+        value={radio.station}
+        disabled={getSetting("advanced-settings-override", false)}
+        options={radio.results}
+        onChange={res => {
+          updateSetting("vz-radio-choice", res.label);
+            if (!cooldown) {
+              radiobrowser.getStation(
+                getSetting("vz-radio-station"),
+                getSetting("volume-slider", 100),
+                getSetting("vz-radio", false),
+                res.value
+              );
+              cooldown = true;
+              setTimeout(function () {
+                cooldown = false;
+              }, 500);
+            }
+        }}
+      >
+        Choose your station here
+      </SelectInput>
         <text>
           Currently using <b>{radio.name}</b> as your radio station!
         </text>

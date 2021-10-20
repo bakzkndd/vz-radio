@@ -1,3 +1,9 @@
+# V1.3.0
+
+- Added station select
+
+Allows you to select a station from up to 10 search results
+
 # V1.2.0
 
 - Added player in channel bar
