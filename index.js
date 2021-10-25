@@ -19,7 +19,6 @@ const Tooltip = AsyncComponent.fromDisplayName("Tooltip");
 
 const HeaderBarButton = require("./components/HeaderBarButton");
 const audio = require("./functions/audio");
-const radio = require("./functions/radio.json");
 const RADIO_DEFAULT_IMAGE = "https://i.imgur.com/nWLt7eE.jpg";
 
 export default class vzradio extends Plugin {
@@ -42,12 +41,7 @@ export default class vzradio extends Plugin {
         return res;
       }
     );
-    if (this.settings.get("vz-radio", false)) {
-      radio.stream = this.settings.get("advanced-settings-override", false)
-        ? this.settings.get("radio-stream-override", radio.stream)
-        : radio.stream;
-      audio.play(radio.stream, this.settings.get("volume-slider", 100));
-    }
+    this.settings.set("vz-radio", false)
     this._injectPlayer();
   }
 
@@ -58,6 +52,7 @@ export default class vzradio extends Plugin {
   }
 
   render(base) {
+    const radio = require("./functions/radio.json");
     const { avatar, avatarWrapper } = getModule(
       "container",
       "usernameContainer"

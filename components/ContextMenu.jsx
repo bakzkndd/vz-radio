@@ -4,7 +4,6 @@ import { ContextMenu } from "@vizality/components";
 import { React } from "@vizality/webpack";
 
 const audio = require("../functions/audio");
-const radio = require("../functions/radio.json");
 const Slider = getModule((m) =>
   m?.render?.toString()?.includes("sliderContainer")
 );
@@ -14,6 +13,10 @@ module.exports = class HeaderBarButton extends React.PureComponent {
     super(props);
     this.get = this.props.get;
     this.set = this.props.set;
+  }
+  
+  render() {
+    const radio = require("../functions/radio.json");
     radio.name = this.get("advanced-settings-override", false)
       ? this.get("radio-name-override", radio.name)
       : radio.name;
@@ -23,8 +26,6 @@ module.exports = class HeaderBarButton extends React.PureComponent {
     radio.homepage = this.get("advanced-settings-override", false)
       ? this.get("radio-homepage-override", radio.homepage)
       : radio.homepage;
-  }
-  render() {
     return (
       <ContextMenu.Menu onClose={contextMenu.closeContextMenu}>
         <ContextMenu.Item
