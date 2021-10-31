@@ -14,18 +14,19 @@ module.exports = class HeaderBarButton extends React.PureComponent {
     this.get = this.props.get;
     this.set = this.props.set;
   }
-  
+
   render() {
     const radio = require("../functions/radio.json");
+    const radioJSON = require("../functions/radio.json");
     radio.name = this.get("advanced-settings-override", false)
-      ? this.get("radio-name-override", radio.name)
-      : radio.name;
+      ? this.get("radio-name-override", radioJSON.name)
+      : radioJSON.name;
     radio.stream = this.get("advanced-settings-override", false)
-      ? this.get("radio-stream-override", radio.stream)
-      : radio.stream;
+      ? this.get("radio-stream-override", radioJSON.stream)
+      : radioJSON.stream;
     radio.homepage = this.get("advanced-settings-override", false)
-      ? this.get("radio-homepage-override", radio.homepage)
-      : radio.homepage;
+      ? this.get("radio-homepage-override", radioJSON.homepage)
+      : radioJSON.homepage;
     return (
       <ContextMenu.Menu onClose={contextMenu.closeContextMenu}>
         <ContextMenu.Item

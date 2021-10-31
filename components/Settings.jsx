@@ -9,7 +9,6 @@ const {
 const fs = require("fs");
 const radiobrowser = require("../functions/radio-browser.js");
 const audio = require("../functions/audio");
-const radio = require("../functions/radio.json");
 let cooldown = false;
 
 module.exports = class vzradiosettings extends React.PureComponent {
@@ -19,25 +18,28 @@ module.exports = class vzradiosettings extends React.PureComponent {
 
   render() {
     const radio = require("../functions/radio.json");
+    const radioJSON = require("../functions/radio.json");
     const { getSetting, toggleSetting, updateSetting } = this.props;
 
     radio.name = getSetting("advanced-settings-override", false)
-      ? getSetting("radio-name-override", radio.name)
-      : radio.name;
+      ? getSetting("radio-name-override", radioJSON.name)
+      : radioJSON.name;
     radio.stream = getSetting("advanced-settings-override", false)
-      ? getSetting("radio-stream-override", radio.stream)
-      : radio.stream;
+      ? getSetting("radio-stream-override", radioJSON.stream)
+      : radioJSON.stream;
     radio.homepage = getSetting("advanced-settings-override", false)
-      ? getSetting("radio-homepage-override", radio.homepage)
-      : radio.homepage;
+      ? getSetting("radio-homepage-override", radioJSON.homepage)
+      : radioJSON.homepage;
     radio.description = getSetting("advanced-settings-override", false)
-      ? getSetting("radio-category-override", radio.description)
-      : radio.description;
+      ? getSetting("radio-category-override", radioJSON.description)
+      : radioJSON.description;
     radio.favicon = getSetting("advanced-settings-override", false)
-      ? getSetting("radio-image-override", radio.favicon)
-      : radio.favicon;
-    radio.results = radio.results || [{ value: 0, label: "Dash Pop X" }]
-    radio.station = radio.station || 0
+      ? getSetting("radio-image-override", radioJSON.favicon)
+      : radioJSON.favicon;
+    radio.results = radioJSON.results || [{ value: 0, label: "Dash Pop X" }]
+    radio.station = radioJSON.station || 0
+
+    console.log(getSetting("advanced-settings-override", false))
 
     return (
       <>
@@ -114,8 +116,8 @@ module.exports = class vzradiosettings extends React.PureComponent {
             note="Here you can enable/disable the advanced settings override."
             value={getSetting("advanced-settings-override", false)}
             onChange={() => {
-              toggleSetting("advanced-settings-override");
-              if (getSetting("advanced-settings-override", false)) {
+              if (!getSetting("advanced-settings-override", false)) {
+                updateSetting("advanced-settings-override", true)
                 if (getSetting("vz-radio", false)) {
                   audio.stop();
                   audio.play(
@@ -124,10 +126,12 @@ module.exports = class vzradiosettings extends React.PureComponent {
                   );
                 }
               } else {
+                updateSetting("advanced-settings-override", false)
                 radiobrowser.getStation(
                   getSetting("vz-radio-station", "Dash Pop X"),
                   getSetting("volume-slider", 100),
-                  getSetting("vz-radio", false)
+                  getSetting("vz-radio", false),
+                  radio.station
                 );
               }
             }}

@@ -24,6 +24,7 @@ const RADIO_DEFAULT_IMAGE = "https://i.imgur.com/nWLt7eE.jpg";
 export default class vzradio extends Plugin {
   async start() {
     this.injectStyles("./style.scss");
+    audio.setup(this.settings.get, this.settings.set)
     const HeaderBarContainer = await getModuleByDisplayName(
       "HeaderBarContainer"
     );
@@ -53,25 +54,26 @@ export default class vzradio extends Plugin {
 
   render(base) {
     const radio = require("./functions/radio.json");
+    const radioJSON = require("./functions/radio.json");
     const { avatar, avatarWrapper } = getModule(
       "container",
       "usernameContainer"
     );
     radio.name = this.settings.get("advanced-settings-override", false)
-      ? this.settings.get("radio-name-override", radio.name)
-      : radio.name;
+      ? this.settings.get("radio-name-override", radioJSON.name)
+      : radioJSON.name;
     radio.stream = this.settings.get("advanced-settings-override", false)
-      ? this.settings.get("radio-stream-override", radio.stream)
-      : radio.stream;
+      ? this.settings.get("radio-stream-override", radioJSON.stream)
+      : radioJSON.stream;
     radio.homepage = this.settings.get("advanced-settings-override", false)
-      ? this.settings.get("radio-homepage-override", radio.homepage)
-      : radio.homepage;
+      ? this.settings.get("radio-homepage-override", radioJSON.homepage)
+      : radioJSON.homepage;
     radio.description = this.settings.get("advanced-settings-override", false)
-      ? this.settings.get("radio-category-override", radio.description)
-      : radio.description;
+      ? this.settings.get("radio-category-override", radioJSON.description)
+      : radioJSON.description;
     radio.favicon = this.settings.get("advanced-settings-override", false)
-      ? this.settings.get("radio-image-override", radio.favicon)
-      : radio.favicon;
+      ? this.settings.get("radio-image-override", radioJSON.favicon)
+      : radioJSON.favicon;
 
     return {
       ...base,

@@ -40,6 +40,6 @@ exports.getStation = async (stationName, volume, play, station  ) => {
 
   if (play) {
     audio.stop();
-    audio.play(radio.stream, volume);
+    audio.play(radio.body[station].url_resolved, volume);
   }
 };

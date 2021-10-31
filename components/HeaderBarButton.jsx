@@ -5,7 +5,6 @@ import { waitForElement } from "@vizality/util/dom";
 import { getOwnerInstance } from "@vizality/util/react";
 import ContextMenu from "./ContextMenu";
 const audio = require("../functions/audio");
-const radio = require("../functions/radio.json");
 
 module.exports = class HeaderBarButton extends React.PureComponent {
   constructor(props) {
@@ -13,12 +12,14 @@ module.exports = class HeaderBarButton extends React.PureComponent {
     this.get = this.props.settings.get;
     this.set = this.props.settings.set;
     this.enabled = this.get("vz-radio", false);
-    radio.stream = this.get("advanced-settings-override", false)
-      ? this.get("radio-stream-override", radio.stream)
-      : radio.stream;
+    
   }
 
   render() {
+    const radio = require("../functions/radio.json");
+    radio.stream = this.get("advanced-settings-override", false)
+      ? this.get("radio-stream-override", radio.stream)
+      : radio.stream;
     return (
       <>
         <Tooltip
