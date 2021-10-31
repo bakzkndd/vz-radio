@@ -1,3 +1,15 @@
+# V1.4.0
+
+- Added error message
+
+When the stream fails to load, you will get an error at the top of your Discord client, saying what went wrong
+
+- Added media controls
+
+Tested on Windows. You can now see what's playing in the volume thingy in the top left corner of your screen, while also being able to pause the radio and switch between stations using the skip buttons.
+
+- Known issue: disabling advanced settings won't work until after the reload
+
 # V1.3.0
 
 - Added station select
