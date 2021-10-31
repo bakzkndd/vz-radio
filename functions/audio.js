@@ -46,6 +46,10 @@ exports.stop = () => {
   audio.src = "";
 };
 
+exports.volume = (volume) => {
+  audio.volume = volume / 100;
+}
+
 exports.setup = (get, set) => {
   settings.get = get
   settings.set = set

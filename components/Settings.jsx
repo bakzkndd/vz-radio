@@ -101,8 +101,7 @@ module.exports = class vzradiosettings extends React.PureComponent {
           onValueChange={(v) => {
             updateSetting("volume-slider", v);
             if (getSetting("vz-radio", false)) {
-              audio.stop();
-              audio.play(radio.stream, v);
+              audio.volume(v);
             }
           }}
         >

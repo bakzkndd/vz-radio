@@ -1,3 +1,7 @@
+# V1.4.1
+
+- Fixed an issue where changing the volume while the radio was enabled would spam errors
+
 # V1.4.0
 
 - Added error message

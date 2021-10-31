@@ -50,8 +50,7 @@ module.exports = class HeaderBarButton extends React.PureComponent {
               onChange={(v) => {
                 this.set("volume-slider", v);
                 if (this.get("vz-radio", false)) {
-                  audio.stop();
-                  audio.play(radio.stream, v);
+                  audio.volume(v);
                 }
               }}
               {...props}
