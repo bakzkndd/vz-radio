@@ -20,15 +20,18 @@
 }
 
 .container-3baos1 {
+  width: calc(var(--vz-dashboard-sidebar-width) - 16px);
   order: 3;
 }
 
 .spotify-in-discord {
+  width: calc(var(--vz-dashboard-sidebar-width) - 16px);
   display: flex;
   order: 2;
 }
 
 .vz-radio-player {
+  width: calc(var(--vz-dashboard-sidebar-width) - 16px);
   $base: &;
   position: relative;
   display: flex;
