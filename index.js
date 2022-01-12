@@ -24,25 +24,24 @@ const RADIO_DEFAULT_IMAGE = "https://i.imgur.com/nWLt7eE.jpg";
 export default class vzradio extends Plugin {
   async start() {
     this.injectStyles("./style.scss");
-    audio.setup(this.settings.get, this.settings.set)
+    audio.setup(this.settings.get, this.settings.set);
     const HeaderBarContainer = await getModuleByDisplayName(
       "HeaderBarContainer"
     );
+    const HeaderBar = await getModuleByDisplayName("HeaderBar");
+
     patch(
       "radio-header-bar",
       HeaderBarContainer.prototype,
       "render",
       (args, res) => {
         res.props.toolbar.props.children.push(
-          <HeaderBarButton
-            settings={this.settings}
-            bartype={HeaderBarContainer.Icon}
-          />
+          <HeaderBarButton settings={this.settings} bartype={HeaderBar.Icon} />
         );
         return res;
       }
     );
-    this.settings.set("vz-radio", false)
+    this.settings.set("vz-radio", false);
     this._injectPlayer();
   }
 

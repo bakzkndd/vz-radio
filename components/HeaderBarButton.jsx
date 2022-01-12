@@ -12,7 +12,6 @@ module.exports = class HeaderBarButton extends React.PureComponent {
     this.get = this.props.settings.get;
     this.set = this.props.settings.set;
     this.enabled = this.get("vz-radio", false);
-    
   }
 
   render() {
@@ -27,8 +26,8 @@ module.exports = class HeaderBarButton extends React.PureComponent {
           position="bottom"
         >
           <this.props.bartype
-            icon={() => (
-              <svg class="icon-22AiRD" viewBox="0 0 500 400">
+            icon={(icon) => (
+              <svg class={icon.className} viewBox="0 0 500 400">
                 <path
                   fill="currentColor"
                   transform="translate(0,-40)"

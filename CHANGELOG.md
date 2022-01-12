@@ -1,3 +1,7 @@
+# V1.4.2
+
+- Fixed the icon (thanks discord)
+
 # V1.4.1
 
 - Fixed an issue where changing the volume while the radio was enabled would spam errors
